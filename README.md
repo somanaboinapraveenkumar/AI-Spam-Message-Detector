@@ -1,202 +1,185 @@
-#  AI Spam Message Detector
+# AI Spam Message Detector
 
-An AI-powered Spam Message Detection System built using Python and Machine Learning.  
-This project classifies SMS messages as **Spam** or **Not Spam** using Natural Language Processing (NLP) techniques and the Multinomial Naive Bayes algorithm.
+An AI-powered Spam Message Detection System built using Python and Machine Learning. This project classifies SMS messages as **SPAM** or **NOT SPAM** using Natural Language Processing (NLP) and the Multinomial Naive Bayes algorithm.
 
----
+## Table of Contents
 
-##  Table of Contents
+* [Project Overview](#project-overview)
+* [Features](#features)
+* [Technologies Used](#technologies-used)
+* [Machine Learning Workflow](#machine-learning-workflow)
+* [Model Performance](#model-performance)
+* [Project Structure](#project-structure)
+* [Installation and Setup](#installation-and-setup)
+* [How It Works](#how-it-works)
+* [Example Test Cases](#example-test-cases)
+* [Future Improvements](#future-improvements)
+* [Author](#author)
 
-- Project Overview
-- Features
-- Demo
-- Technologies Used
-- Machine Learning Workflow
-- Model Performance
-- Project Structure
-- Installation & Setup
-- How It Works
-- Future Improvements
-- Author
+## Project Overview
 
----
+Spam messages are a common problem in digital communication. This project uses machine learning to analyze text messages and classify them as spam or legitimate messages (ham).
 
-##  Project Overview
+The application provides a graphical user interface for individual message detection and bulk CSV processing.
 
-Spam messages are a common problem in digital communication systems.  
-This project implements a machine learning-based classification model that analyzes text messages and predicts whether they are spam or legitimate (ham).
+## Features
 
-The model uses:
+* Machine learning-based spam classification
+* NLP-based text processing
+* GUI application built with Tkinter
+* Single-message spam detection
+* Prediction confidence percentage
+* Prediction history
+* Export prediction history to CSV
+* Bulk spam detection from CSV files
+* Export bulk prediction results
+* Dashboard statistics:
 
-- TF-IDF Vectorization for text feature extraction
-- Multinomial Naive Bayes for classification
-- Tkinter for GUI interface
+  * Total messages analyzed
+  * Spam messages detected
+  * Not-spam messages detected
+* Clear history and reset statistics
+* Command-line prediction interface
+* Saved machine learning model and vectorizer
 
----
+## Technologies Used
 
-##  Features
+| Technology              | Purpose                        |
+| ----------------------- | ------------------------------ |
+| Python                  | Programming language           |
+| Pandas                  | Data processing                |
+| Scikit-learn            | Machine learning               |
+| Multinomial Naive Bayes | Classification                 |
+| Text Vectorizer         | Text feature extraction        |
+| Tkinter                 | GUI development                |
+| Joblib                  | Saving and loading model files |
+| Git and GitHub          | Version control                |
 
-✔ 97.85% Model Accuracy  
-✔ Machine Learning-based classification  
-✔ Natural Language Processing (TF-IDF)  
-✔ Command Line Interface (CLI)  
-✔ Modern GUI Interface  
-✔ Dark-Themed Design  
-✔ Clear Button  
-✔ Message History  
-✔ Real-time Spam Detection  
-✔ GitHub Version Control  
+## Machine Learning Workflow
 
----
+1. Load the SMS Spam Collection dataset.
+2. Preprocess the message text.
+3. Convert text into numerical features using a text vectorizer.
+4. Split the dataset into training and testing sets.
+5. Train the Multinomial Naive Bayes classifier.
+6. Evaluate model performance.
+7. Save the trained model and vectorizer.
+8. Load the saved model for real-time predictions.
 
-##  Demo
+## Model Performance
 
-### GUI Interface Includes:
+| Metric            | Value                   |
+| ----------------- | ----------------------- |
+| Dataset size      | 5,574 messages          |
+| Spam messages     | 747                     |
+| Ham messages      | 4,827                   |
+| Algorithm         | Multinomial Naive Bayes |
+| Reported accuracy | 97.85%                  |
 
-- Text input box
-- Check Message button
-- Clear button
-- Result display (Color-coded)
-- Message history log
-- Accuracy display
+*The reported accuracy should be verified against the evaluation results from the current training script.*
 
----
+## Project Structure
 
-##  Technologies Used
-
-| Technology        | Purpose |
-|-------------------|----------|
-| Python            | Programming Language |
-| Pandas            | Data Processing |
-| NumPy             | Numerical Operations |
-| Scikit-learn      | Machine Learning |
-| TF-IDF Vectorizer | Text Feature Extraction |
-| Naive Bayes       | Classification Model |
-| Tkinter           | GUI Development |
-| Git & GitHub      | Version Control |
-
----
-
-##  Machine Learning Workflow
-
-1. Load Dataset (SMS Spam Collection – 5574 messages)
-2. Preprocess Data
-3. Convert text to numerical features using TF-IDF
-4. Split data into training and testing sets
-5. Train model using Multinomial Naive Bayes
-6. Evaluate model accuracy
-7. Save trained model (.pkl)
-8. Load model for real-time prediction
-
----
-
-##  Model Performance
-
-- Dataset Size: 5574 messages
-- Spam Messages: 747
-- Ham Messages: 4827
-- Algorithm: Multinomial Naive Bayes
-- Accuracy Achieved: **97.85%**
-
-This high accuracy demonstrates effective text classification using classical ML algorithms.
-
----
-
-##  Project Structure
-
-```
+```text
 AI-Spam-Message-Detector/
 │
-├── train_model.py        # Model training script
-├── app.py                # CLI prediction version
-├── gui_app.py            # Modern GUI application
-├── requirements.txt      # Required libraries
-├── README.md             # Project documentation
-├── DATASET/              # SMS dataset
-└── MODEL/                # Saved model & vectorizer
+├── train_model.py
+├── app.py
+├── gui_app.py
+├── requirements.txt
+├── README.md
+│
+├── DATASET/
+│   └── spam.csv
+│
+└── MODEL/
+    ├── spam_model.pkl
+    └── vectorizer.pkl
 ```
 
----
+## Installation and Setup
 
-##  Installation & Setup
+### Step 1: Clone the Repository
 
-### Step 1: Clone Repository
-
-```
-git clone https://github.com/praveen12618/AI-Spam-Message-Detector.git
+```bash
+git clone https://github.com/somanaboinapraveenkumar/AI-Spam-Message-Detector.git
 cd AI-Spam-Message-Detector
 ```
 
 ### Step 2: Install Dependencies
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
-### Step 3: Train Model
+### Step 3: Train the Model (Optional)
 
-```
+```bash
 py train_model.py
 ```
 
-### Step 4: Run GUI Application
+### Step 4: Run the GUI Application
 
-```
+```bash
 py gui_app.py
 ```
 
----
+### Step 5: Run the Command-Line Application
 
-##  Example Test Cases
-
-### Spam Example:
-```
-Congratulations! You won 50000 cash prize. Call now!
+```bash
+py app.py
 ```
 
-Prediction:
+## How It Works
+
+The application converts text messages into numerical features using a text vectorization technique. The Multinomial Naive Bayes classifier uses these features to predict whether a message is spam or not spam.
+
+The GUI displays the prediction, confidence percentage, history, and statistics. Users can also upload CSV files to classify multiple messages.
+
+## Example Test Cases
+
+### Spam Example
+
+```text
+Congratulations! You won a cash prize. Call now to claim your reward!
 ```
-🚨 SPAM
+
+Expected prediction:
+
+```text
+SPAM
 ```
 
-### Normal Example:
-```
-Hey bro, are you coming to college today?
-```
+### Normal Message Example
 
-Prediction:
-```
-✅ NOT SPAM
+```text
+Hey, are you coming to college today?
 ```
 
----
+Expected prediction:
 
-##  How It Works (Simple Explanation)
+```text
+NOT SPAM
+```
 
-The system converts text messages into numerical form using TF-IDF (Term Frequency – Inverse Document Frequency).
+*Predictions depend on the trained model and the input message.*
 
-The Naive Bayes algorithm then calculates probabilities and predicts whether the message belongs to the spam category or not.
+## Future Improvements
 
----
+* Develop a web application using Flask or FastAPI
+* Deploy the application to a cloud platform
+* Add email spam detection
+* Explore deep learning models
+* Create a REST API
+* Add user authentication
+* Improve model evaluation and performance analysis
 
-##  Future Improvements
+## Author
 
-- Convert to Flask Web Application
-- Deploy on Cloud Platform
-- Add Email Spam Detection
-- Add Deep Learning Model (LSTM)
-- Create REST API
-- Add User Authentication
+**Somanaboina Praveen Kumar**
 
----
+GitHub: [somanaboinapraveenkumar](https://github.com/somanaboinapraveenkumar)
 
-##  Author
+## Support
 
-**Somanaboina Praveen Kumar**  
-GitHub: https://github.com/praveen12618  
-
----
-
-##  If You Like This Project
-
-Give it a star ⭐ on GitHub!
+If you find this project useful, consider giving the repository a star on GitHub.
